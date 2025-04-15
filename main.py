@@ -1,3 +1,7 @@
+import unittest
+from tkinter import *
+from tkinter import ttk
+
 print("Hello, and welcome to the Banking Application")
 print("Here is a list of options to choose from ")
 print("1: Cash a check")
