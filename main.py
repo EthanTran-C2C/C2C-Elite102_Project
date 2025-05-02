@@ -3,7 +3,7 @@ from database import BankDatabase
 class bankingapplication:
     userInput = 0
     username = ""
-    accountnumber = ""
+    accountnumber = 0
 
     def __init__(self):
         self.db = BankDatabase()
@@ -16,7 +16,7 @@ class bankingapplication:
     
     def createAccount(self):
         self.accountnumber = self.db.createAccount(self.username)
-        print("Account" + self.accountnumber + " has been created")
+        print("Account " + str(self.accountnumber) + " has been created")
 
     def displayMenu(self):
         print("Hello, and welcome to the Banking Application")
@@ -32,7 +32,9 @@ class bankingapplication:
         user_input = input("Please select an option from the menu: ")
         self.userInput = int(user_input)
 
-    # def check_balance(self):
+    def check_balance(self):
+        balance = self.db.checkBalance(self.accountNumber)
+        print("The balance is $" + str(balance))
 
     def deposit(self):
         accountNumber = int(input("What is the account number? "))
@@ -59,7 +61,7 @@ if app.login():
     app.displayMenu()
 
     if app.userInput == 1:
-        print("check balance here")
+        app.check_balance()
 
     elif app.userInput == 2:
         app.deposit()

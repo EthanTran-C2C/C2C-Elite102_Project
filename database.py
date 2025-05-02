@@ -42,3 +42,11 @@ class BankDatabase():
         cursor.execute(query, (depositAmount, accountNumber))
         self.connection.commit()
         cursor.close()
+
+    def checkBalance(self, accountNumber):
+        cursor = self.connection.cursor()
+        query = 'SELECT balance FROM account WHERE account_number = %s'
+        cursor.execute(query, (accountNumber))
+        result = cursor.fetchone()
+        return result
+        cursor.close()
