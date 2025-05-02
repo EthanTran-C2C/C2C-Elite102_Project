@@ -14,6 +14,12 @@ class BankDatabase():
         else:
             return False  
         cursor.close() 
+    
+    def getAccountNumber(self, username):
+        cursor = self.connection.cursor()
+        query = "SELECT account_number FROM user WHERE user_name = %s"
+        cursor.execute(query, (username))
+        cursor.close()
         
     def createAccount(self, username):
         cursor = self.connection.cursor()

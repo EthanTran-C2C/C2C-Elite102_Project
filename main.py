@@ -12,7 +12,10 @@ class bankingapplication:
         self.username = input("Enter username: ")
         password = input("Enter your password: ")
         # Passed the same parameter as the functions in database
-        return self.db.login(self.username, password)
+        validUser = self.db.login(self.username, password)
+        if validUser:
+            self.accountnumber = self.db.getAccountNumber(self.username)
+        return validUser
     
     def createAccount(self):
         self.accountnumber = self.db.createAccount(self.username)
@@ -33,7 +36,7 @@ class bankingapplication:
         self.userInput = int(user_input)
 
     def check_balance(self):
-        balance = self.db.checkBalance(self.accountNumber)
+        balance = self.db.checkBalance(self.accountnumber)
         print("The balance is $" + str(balance))
 
     def deposit(self):
