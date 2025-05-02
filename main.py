@@ -48,6 +48,8 @@ class bankingapplication:
     def withdraw(self):
         #acc = int(input("What is the account number?"))
         withdrawAmount = float(input("Enter the amount being withdrawn: "))
+        print(type(self.accountNumber), self.accountNumber)  # Debugging step
+
         self.db.withdraw(self.accountNumber, withdrawAmount)
         app.check_balance()
 

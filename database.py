@@ -21,7 +21,7 @@ class BankDatabase():
         cursor.execute(query, (username,))
         result = cursor.fetchone()
         cursor.close()
-        return result
+        return result[0]
         
     def createAccount(self, username):
         cursor = self.connection.cursor()
