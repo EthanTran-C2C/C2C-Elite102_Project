@@ -23,9 +23,10 @@ class bankingapplication:
     # def check_balance(self):
 
     def deposit(self):
-        acc = int(input("What is the account number? "))
-        val = float(input("Enter the amount being deposited: "))
-        print("$" + str(val) + " has been deposited into account number " + str(acc))
+        accountNumber = int(input("What is the account number? "))
+        depositAmount = float(input("Enter the amount being deposited: "))
+        self.db.deposit(accountNumber, depositAmount)
+        print("$" + str(depositAmount) + " has been deposited into account number " + str(accountNumber))
 
     def withdraw():
         acc = input("What is the account number?")
