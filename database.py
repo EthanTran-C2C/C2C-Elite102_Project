@@ -8,3 +8,8 @@ class BankDatabase():
         query = "INSERT INTO user(pin, user_name) VALUES (%s, %s)"
         cursor.execute(query, (pin, username,))
         self.connection.commit()
+    # def deposit(self, pin):
+    #     cursor = self.connection.cursor()
+    #      query = " "
+    #      cursor.execute(query, (pin, username,))
+    #      self.connection.commit()
