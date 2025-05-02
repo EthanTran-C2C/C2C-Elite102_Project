@@ -1,7 +1,39 @@
 import unittest
 from main.py import bankingapplication 
 
-class TestBankingApplication(unittest.TestCase):
-    # Test the application
-    unittest.main()
+class test(unittest.TestCase):
+    # Test each of the major functions to ensure that the tested value matches the predicted result. Does not work yet
+    def testLogin(self):
+        # Create a mock result of what would happen if the login function was executed
+        result = self.app.login()
+        # See if this mock result is true, if not then prints an exception
+        self.assertTrue(result, 'error')
+    def testCreateAcc(self):
+        testacc = self.app.createAccount()
+        self.assertEqual(testacc, 'error')
+    def testDisplayMenu(self):
+        testdisplay = self.app.displayMenu()
+        self.assertTrue(testdisplay, 'error')
+    def testCheckBalance(self):
+        testcheck = self.app.check_balance()
+        self.assertTrue(testcheck, 'error')
+    def testDeposit(self):
+        testdeposit = self.app.deposit()
+        self.assertTrue(testdeposit, 'error')
+    def testWithdraw(self):
+        testwithdraw = self.app.withdraw()
+        self.assertTrue(testwithdraw, 'error')
+    def testCreateUser(self):
+        testcreate = self.app.createUser()
+        self.assertTrue(result, 'error')
+    def testCloseAccount(self):
+        testclose = self.app.close_account()
+        self.assertTrue(testclose, 'error')
+    def testModifyAccount(self):
+        testmod = self.app.modifyAccount()
+        self.assertTrue(testmod, 'error')
+        
+    # Performs unit test on main
+    if __name__ == '__main__':
+        unittest.main()
     
