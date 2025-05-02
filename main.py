@@ -51,7 +51,7 @@ class bankingapplication:
         print(type(self.accountNumber), self.accountNumber)  # Debugging step
 
         self.db.withdraw(self.accountNumber, withdrawAmount)
-        app.check_balance()
+        self.check_balance()
 
     def createUser(self):
         username = input("Enter a username: ")

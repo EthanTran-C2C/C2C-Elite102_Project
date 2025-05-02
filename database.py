@@ -61,7 +61,7 @@ class BankDatabase():
     def checkBalance(self, accountNumber):
         cursor = self.connection.cursor()
         query = 'SELECT balance FROM account WHERE account_number = %s'
-        cursor.execute(query, (accountNumber))
+        cursor.execute(query, (accountNumber,))
         result = cursor.fetchone()
         cursor.close()
         return result[0]
