@@ -48,8 +48,6 @@ class bankingapplication:
     def withdraw(self):
         #acc = int(input("What is the account number?"))
         withdrawAmount = float(input("Enter the amount being withdrawn: "))
-        print(type(self.accountNumber), self.accountNumber)  # Debugging step
-
         self.db.withdraw(self.accountNumber, withdrawAmount)
         self.check_balance()
 
@@ -59,9 +57,12 @@ class bankingapplication:
         # Calls the createUser function in the BankDatabase class
         self.db.createUser(password, username)
 
-    # def close_account():
+    def close_account(self):
+        self.db.closeAccount(self.accountNumber)
         
-    # def modify_account():
+    def modifyAccount(self):
+        password = input("Enter a new password: ")
+        self.db.modifyAccount(password)
 
 app = bankingapplication()
 if app.login():
@@ -83,12 +84,12 @@ if app.login():
         app.createUser()
 
     elif app.userInput == 6:
-        print("close acc")
+        app.close_account()
     
     elif app.userInput == 7:
-        print("modify user")
+        app.modifyAccount()
     else:
-        print("exit")
+        print("Thank you for using the application")
 else:
     print("Invalid user, please try again ")
 
