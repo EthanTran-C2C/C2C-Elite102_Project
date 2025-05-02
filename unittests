@@ -1,0 +1,7 @@
+import unittest
+from main.py import bankingapplication 
+
+class TestBankingApplication(unittest.TestCase):
+    # Test the application
+    unittest.main()
+    
