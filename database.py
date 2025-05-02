@@ -51,10 +51,19 @@ class BankDatabase():
         self.connection.commit()
         cursor.close()
 
+    def withdraw(self, accountNumber, withdrawAmount):
+        cursor = self.connection.cursor()
+        query = "UPDATE ACCOUNT SET BALANCE = BALANCE - %s WHERE ACCOUNT_NUMBER = %s"
+        cursor.execute(query, (withdrawAmount, accountNumber))
+        self.connection.commit()
+        cursor.close()
+
     def checkBalance(self, accountNumber):
         cursor = self.connection.cursor()
         query = 'SELECT balance FROM account WHERE account_number = %s'
-        cursor.execute(query, (accountNumber,))
+        cursor.execute(query, (accountNumber))
         result = cursor.fetchone()
         cursor.close()
-        return result
+        return result[0]
+    
+    

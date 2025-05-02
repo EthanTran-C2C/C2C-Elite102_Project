@@ -3,7 +3,7 @@ from database import BankDatabase
 class bankingapplication:
     userInput = 0
     username = ""
-    accountnumber = 0
+    accountNumber = 0
 
     def __init__(self):
         self.db = BankDatabase()
@@ -14,11 +14,11 @@ class bankingapplication:
         # Passed the same parameter as the functions in database
         validUser = self.db.login(self.username, password)
         if validUser:
-            self.accountnumber = self.db.getAccountNumber(self.username)
+            self.accountNumber = self.db.getAccountNumber(self.username)
         return validUser
     
     def createAccount(self):
-        self.accountnumber = self.db.createAccount(self.username)
+        self.accountNumber = self.db.createAccount(self.username)
         print("Account " + str(self.accountnumber) + " has been created")
 
     def displayMenu(self):
@@ -36,18 +36,20 @@ class bankingapplication:
         self.userInput = int(user_input)
 
     def check_balance(self):
-        balance = self.db.checkBalance(self.accountnumber)
+        balance = self.db.checkBalance(self.accountNumber)
         print("The balance is $" + str(balance))
 
     def deposit(self):
-        accountNumber = int(input("What is the account number? "))
+        #accountNumber = int(input("What is the account number? "))
         depositAmount = float(input("Enter the amount being deposited: "))
-        self.db.deposit(accountNumber, depositAmount)
-        print("$" + str(depositAmount) + " has been deposited into account number " + str(accountNumber))
+        self.db.deposit(self.accountNumber, depositAmount)
+        print("$" + str(depositAmount) + " has been deposited into account number " + str(self.accountNumber))
 
     def withdraw(self):
-        acc = input("What is the account number?")
-        val = input("Enter the amount being withdrawn")
+        #acc = int(input("What is the account number?"))
+        val = float(input("Enter the amount being withdrawn: "))
+        self.db.withdraw(self.accountNumber)
+        app.check_balance()
 
     def createUser(self):
         username = input("Enter a username: ")
@@ -70,7 +72,7 @@ if app.login():
         app.deposit()
 
     elif app.userInput == 3:
-        print("withdraw")
+        app.withdraw()
 
     elif app.userInput == 4:
         app.createAccount()
