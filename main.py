@@ -19,7 +19,7 @@ class bankingapplication:
     
     def createAccount(self):
         self.accountNumber = self.db.createAccount(self.username)
-        print("Account " + str(self.accountnumber) + " has been created")
+        print("Account " + str(self.accountNumber) + " has been created")
 
     def displayMenu(self):
         print("Hello, and welcome to the Banking Application")
@@ -59,6 +59,7 @@ class bankingapplication:
 
     def close_account(self):
         self.db.closeAccount(self.accountNumber)
+        print(str(self.accountNumber) + " has been closed!")
         
     def modifyAccount(self):
         password = input("Enter a new password: ")
