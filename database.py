@@ -68,15 +68,15 @@ class BankDatabase():
     
     def closeAccount(self, accountNumber):
         cursor = self.connection.cursor()
-        query = 'UPDATE account SET status = ''CLOSED'' WHERE account_number = %s'
+        query = 'UPDATE account SET status = "CLOSED" WHERE account_number = %s'
         cursor.execute(query, (accountNumber,))
         self.connection.commit()
         cursor.close()
     
-    def modifyAccount(self, password):
+    def modifyAccount(self, password, username):
         cursor = self.connection.cursor()
         query = 'UPDATE USER set password = %s WHERE user_id = %s'
+        cursor.execute(query, (password, username))
         self.connection.commit()
-        cursor.execute(query, (password,))
         cursor.close()
     

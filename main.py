@@ -62,7 +62,7 @@ class bankingapplication:
         
     def modifyAccount(self):
         password = input("Enter a new password: ")
-        self.db.modifyAccount(password)
+        self.db.modifyAccount(password, self.username)
 
 app = bankingapplication()
 if app.login():
