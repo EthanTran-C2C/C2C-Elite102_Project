@@ -1,7 +1,5 @@
-import unittest
 from database import BankDatabase
-from tkinter import *
-from tkinter import ttk
+
 
 class bankingapplication:
     userInput = 0
@@ -37,9 +35,9 @@ class bankingapplication:
         self.db.deposit(accountNumber, depositAmount)
         print("$" + str(depositAmount) + " has been deposited into account number " + str(accountNumber))
 
-    def withdraw():
-        acc = input("What is the account number?")
-        val = input("Enter the amount being withdrawn")
+    # def withdraw(self):
+    #     acc = input("What is the account number?")
+    #     val = input("Enter the amount being withdrawn")
 
     def createUser(self):
         username = input("Enter a username: ")
