@@ -12,7 +12,20 @@ class BankDatabase():
         if result[0] == 1:
             return True
         else:
-            return False   
+            return False  
+        cursor.close() 
+        
+    def createAccount(self, username):
+        cursor = self.connection.cursor()
+        query = "INSERT INTO account(balance, status) VALUES (0.00, 'OPEN')"
+        cursor.execute(query)
+        # Get the account_number of the newly inserted account
+        account_number = cursor.lastrowid
+        query = "UPDATE user SET account_number = %s WHERE user_name = %s"
+        cursor.execute(query, (account_number, username))
+        self.connection.commit()
+        cursor.close()
+        return account_number
 
     def createUser(self, password, username):
         # Establishes the cursor, an object that allows interaction with database
@@ -21,9 +34,11 @@ class BankDatabase():
         query = "INSERT INTO user(password, user_name) VALUES (%s, %s)"
         cursor.execute(query, (password, username))
         self.connection.commit()
+        cursor.close()
 
     def deposit(self, accountNumber, depositAmount):
         cursor = self.connection.cursor()
         query = "UPDATE ACCOUNT SET BALANCE = BALANCE + %s WHERE ACCOUNT_NUMBER = %s"
         cursor.execute(query, (depositAmount, accountNumber))
         self.connection.commit()
+        cursor.close()
