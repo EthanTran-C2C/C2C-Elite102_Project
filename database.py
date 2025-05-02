@@ -3,11 +3,25 @@ class BankDatabase():
     def __init__(self):
         self.connection = mysql.connector.connect(user = 'root', database = 'banking_system', password = 'password')
 
-    def createUser(self, pin, username):
+    def login(self, username, password):
+        # Returns true if the user is in the database based on the provided username and password
         cursor = self.connection.cursor()
-        query = "INSERT INTO user(pin, user_name) VALUES (%s, %s)"
-        cursor.execute(query, (pin, username))
+        query = "SELECT COUNT(*) FROM user WHERE user_name = %s AND password = %s"
+        cursor.execute(query, (username, password))
+        result = cursor.fetchone()
+        if result[0] == 1:
+            return True
+        else:
+            return False   
+
+    def createUser(self, password, username):
+        # Establishes the cursor, an object that allows interaction with database
+        cursor = self.connection.cursor()
+        # sql code
+        query = "INSERT INTO user(password, user_name) VALUES (%s, %s)"
+        cursor.execute(query, (password, username))
         self.connection.commit()
+
     def deposit(self, accountNumber, depositAmount):
         cursor = self.connection.cursor()
         query = "UPDATE ACCOUNT SET BALANCE = BALANCE + %s WHERE ACCOUNT_NUMBER = %s"

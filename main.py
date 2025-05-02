@@ -5,9 +5,18 @@ from tkinter import ttk
 
 class bankingapplication:
     userInput = 0
+    username = ""
+    accountnumber = ""
 
     def __init__(self):
         self.db = BankDatabase()
+
+    def login(self):
+        self.username = input("Enter username: ")
+        password = input("Enter your pin: ")
+        # Passed the same parameter as the functions in database
+        return self.db.login(self.username, password)
+
     def displayMenu(self):
         print("Hello, and welcome to the Banking Application")
         print("Here is a list of options to choose from ")
@@ -31,9 +40,11 @@ class bankingapplication:
     def withdraw():
         acc = input("What is the account number?")
         val = input("Enter the amount being withdrawn")
+
     def createUser(self):
         username = input("Enter a username: ")
         pin = input("Enter a PIN: ")
+        # Calls the createUser function in the BankDatabase class
         self.db.createUser(pin, username)
 
     # def close_account():
@@ -41,22 +52,27 @@ class bankingapplication:
     # def modify_account():
 
 app = bankingapplication()
-app.displayMenu()
+if app.login():
+    app.displayMenu()
 
-if app.userInput == 1:
-    print("check balance here")
+    if app.userInput == 1:
+        print("check balance here")
 
-elif app.userInput == 2:
-    app.deposit()
+    elif app.userInput == 2:
+        app.deposit()
 
-elif app.userInput == 3:
-    app.createUser()
+    elif app.userInput == 3:
+        app.createUser()
 
-elif app.userInput == 4:
-    print("Close acc")
+    elif app.userInput == 4:
+        print("Close acc")
 
-elif app.userInput == 5:
-    print("Mod acc")
-          
+    elif app.userInput == 5:
+        print("Mod acc")
+            
+    else:
+        print("exit")
 else:
-    print("exit")
+    print("Invalid user, please try again ")
+
+
